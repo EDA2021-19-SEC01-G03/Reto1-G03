@@ -56,7 +56,7 @@ def addVideo(catalog, video):
     lt.addLast(catalog['videos'], video)
 
 
-def addCategory(catalog, cat): 
+def addCategory(catalog, cat):
 
     c = newCategory(cat['name'], cat['id'])
 
@@ -65,11 +65,11 @@ def addCategory(catalog, cat):
 # Funciones para creacion de datos
 
 
-def newCategory(name, id): 
+def newCategory(name, id):
 
     cat = {'name': '', 'id': ''}
     cat['name'] = name
-    cat['id'] = id 
+    cat['id'] = id
     return cat
 
 # Funciones de consulta

@@ -34,6 +34,7 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
+
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
@@ -57,14 +58,16 @@ def loadData(catalog):
     """
     controller.loadData(catalog)
 
-def firstInfo(first): 
-    print('Titulo: '+ str(first['title']))
-    print('Titulo del canal: '+ str(first['channel_title']))
+
+def firstInfo(first):
+    print('Titulo: ' + str(first['title']))
+    print('Titulo del canal: ' + str(first['channel_title']))
     print('Fecha de tendencia: ' + str(first['trending_date']))
-    print('Pais: '+ str(first['country']))
+    print('Pais: ' + str(first['country']))
     print('Vistas: ' + str(first['views']))
-    print('Likes: '+ str(first['likes']))
-    print('Dislikes: '+ str(first['dislikes']))
+    print('Likes: ' + str(first['likes']))
+    print('Dislikes: ' + str(first['dislikes']))
+
 
 """
 Menu principal
@@ -74,31 +77,29 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-        
+
         catalog = initCatalog()
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
 
-        first=lt.firstElement(catalog['videos'])
+        first = lt.firstElement(catalog['videos'])
         print('Primer video cargado: ')
         firstInfo(first)
-        
+
         print('Lista de categorias: ')
         print(catalog['category_names'])
-        
-        
+
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
         category = input("Buscando en categoria: ? ")
-        
-    
+
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")
-    
+
     elif int(inputs[0]) == 4:
-        category = input("Buscando en categoria: ? ")        
-    
+        category = input("Buscando en categoria: ? ")
+
     elif int(inputs[0]) == 5:
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
