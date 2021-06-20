@@ -47,17 +47,13 @@ def newCatalog():
 
     return catalog
 
- 
 
 # Funciones para agregar informacion al catalogo
 
 
-def addVideo(catalog,video): 
+def addVideo(catalog, video):
 
     lt.addLast(catalog['videos'], video)
-
-    
-
 
 
 def addCategory(catalog, cat): 
