@@ -55,7 +55,7 @@ def loadVideos(catalog):
 
 def loadCategory(catalog):
 
-    catfile = cf.data_dir + 'category-id.csv'
+    catfile = cf.data_dir + 'Videos/category-id.csv'
 
     input_file = csv.DictReader(open(catfile, encoding='utf-8' ))
     for categoria in input_file: 

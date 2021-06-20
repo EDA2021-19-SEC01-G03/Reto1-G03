@@ -57,6 +57,15 @@ def loadData(catalog):
     """
     controller.loadData(catalog)
 
+def firstInfo(first): 
+    print('Titulo: '+ str(first['title']))
+    print('Titulo del canal: '+ str(first['cannel_title']))
+    print('Fecha de tendencia: ' + str(first['trending_date']))
+    print('Pais: '+ str(first['country']))
+    print('Vistas: ' + str(first['views']))
+    print('Likes: '+ str(first['likes']))
+    print('Dislikes: '+ str(first['dislikes']))
+
 """
 Menu principal
 """
@@ -67,7 +76,11 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
-
+        print('Videos cargados: ' + str(lt.size(catalog['videos'])))
+        print('Lista de categorias:\n' + catalog['category_names'])
+        first=lt.firstElement(catalog['videos'])
+        firstInfo(first)
+        
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
