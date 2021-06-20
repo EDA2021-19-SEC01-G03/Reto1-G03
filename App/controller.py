@@ -39,6 +39,11 @@ def initCatalog():
 
 # Funciones para la carga de datos
 
+def loadData(catalog): 
+
+    loadVideos(catalog)
+    loadCategory(catalog)
+
 
 def loadVideos(catalog):
 
