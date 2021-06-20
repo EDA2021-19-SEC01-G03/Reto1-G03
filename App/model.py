@@ -40,10 +40,10 @@ los mismos.
 
 def newCatalog():
 
-    catalog = {'videos': None, 'catalog_names': None}
+    catalog = {'videos': None, 'category_names': None}
 
     catalog['videos'] = lt.newList()
-    catalog['catalog_names'] = lt.newList('ARRAY_LIST')
+    catalog['category_names'] = lt.newList('ARRAY_LIST')
 
     return catalog
 
@@ -60,7 +60,7 @@ def addCategory(catalog, cat):
 
     c = newCategory(cat['name'], cat['id'])
 
-    lt.addLast(catalog['category_name'], c)
+    lt.addLast(catalog['category_names'], c)
 
 # Funciones para creacion de datos
 

@@ -59,7 +59,7 @@ def loadData(catalog):
 
 def firstInfo(first): 
     print('Titulo: '+ str(first['title']))
-    print('Titulo del canal: '+ str(first['cannel_title']))
+    print('Titulo del canal: '+ str(first['channel_title']))
     print('Fecha de tendencia: ' + str(first['trending_date']))
     print('Pais: '+ str(first['country']))
     print('Vistas: ' + str(first['views']))
@@ -74,12 +74,18 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        
         catalog = initCatalog()
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
-        print('Lista de categorias:\n' + catalog['category_names'])
+
         first=lt.firstElement(catalog['videos'])
+        print('Primer video cargado: ')
         firstInfo(first)
+        
+        print('Lista de categorias: ')
+        print(catalog['category_names'])
+        
         
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")
