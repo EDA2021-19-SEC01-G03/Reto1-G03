@@ -77,9 +77,7 @@ def newCategory(name, id):
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 
-def compareratings(book1, book2):
 
-    return (float(book1['average_rating']) < float(book2['average_rating']))
 
 
 # Funciones de ordenamiento
