@@ -77,9 +77,14 @@ def newCategory(name, id):
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 
-def compareratings(book1, book2):
-
-    return (float(book1['average_rating']) < float(book2['average_rating']))
+def cmpVideosByLikes(video1, video2):
+    """
+    Devuelve verdadero (True) si los likes de video1 son menores que los del video2
+    Args:
+        video1: informacion del primer video que incluye su valor 'likes'
+        video2: informacion del segundo video que incluye su valor 'likes'
+    """
+    return (int(video1['likes']) < float(video2['likes']))
 
 
 # Funciones de ordenamiento
