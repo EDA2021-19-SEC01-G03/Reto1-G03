@@ -84,7 +84,7 @@ def cmpVideosByLikes(video1, video2):
         video1: informacion del primer video que incluye su valor 'likes'
         video2: informacion del segundo video que incluye su valor 'likes'
     """
-    return (int(video1['likes']) < float(video2['likes']))
+    return (int(video1['likes']) < int(video2['likes']))
 
 
 # Funciones de ordenamiento
