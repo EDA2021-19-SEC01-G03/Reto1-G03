@@ -38,12 +38,12 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog():
+def newCatalog(dat_est):
 
     catalog = {'videos': None, 'category_names': None}
 
-    catalog['videos'] = lt.newList()
-    catalog['category_names'] = lt.newList('ARRAY_LIST')
+    catalog['videos'] = lt.newList(dat_est)
+    catalog['category_names'] = lt.newList(dat_est)
 
     return catalog
 
