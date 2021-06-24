@@ -44,10 +44,18 @@ def printMenu():
     print("5- (Requisito 4) Consultar los Top x videos con mas comentarios en un pais con un tag especifico")
     print("0- Salir")
 
-def printInfoMenu():
-    print("Menu cargar información datos")
-    print("1- Representar la lista como un Array (ARRAY_LIST)")
-    print("2- Representar la lista como una lista sencillamente encadenada (LINKED_LIST)")
+
+def printInfoMenu1():
+    print("\t 1- Array (ARRAY_LIST)")
+    print("\t 2- Lista encadenada(LINKED_LIST)")
+
+
+def printInfoMenu2():
+    print("Tipos de algoritmos de ordenamiento ")
+    print("\t 1- Selection")
+    print("\t 2- Insertion")
+    print("\t 3- Shell")
+
 
 def initCatalog(dat_est):
     """
@@ -72,13 +80,14 @@ def firstInfo(first):
     print('Likes: ' + str(first['likes']))
     print('Dislikes: ' + str(first['dislikes']))
 
+
 def printCategoryList(catalog):
     """
     Imprime los nombres de las categorias cargadas
     """
     size = lt.size(catalog['category_names'])
-    for i in range(1,size+1):
-        element=lt.getElement(catalog['category_names'],i)
+    for i in range(1, size+1):
+        element = lt.getElement(catalog['category_names'], i)
         print(element['name'])
 
 """
@@ -88,13 +97,13 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        printInfoMenu()
-        inputs1 = input('Seleccione una opción para continuar\n')
-        if int(inputs1[0])==1:
+        printInfoMenu1()
+        inputs1 = input('Seleccione el tipo de estructura de datos que quiere implementar\n')
+        if int(inputs[0]) == 1:
             dat_est = "ARRAY_LIST"
-        if int(inputs1[0])==2:
+        if int(inputs1[0]) == 2:
             dat_est = "LINKED_LIST"
-        
+
         print("Cargando información de los archivos ....")
 
         catalog = initCatalog(dat_est)
@@ -109,9 +118,40 @@ while True:
         printCategoryList(catalog)
 
     elif int(inputs[0]) == 2:
+        printInfoMenu2()
+        sort = input("Seleccione un método de ordenamiento para el algoritmo: ")
+
+        if int(sort[0]) == 1:
+            method = "selectionsort"
+        if int(sort[0]) == 2:
+            method = "insertionsort"
+        if int(sort[0]) == 3:
+            method = "shellsort"
+
+        size = lt.size(catalog['videos'])
+
+        menor = False
+
+        while menor is False:
+
+            q_size = input("Eliga la muestra de la sublista: ")
+            if int(q_size) <= size:
+                size = int(q_size)
+                menor = True
+            else:
+                print("Eliga un valor que no exceda el tamaño de la lista")
+
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
         category = input("Buscando en categoria: ? ")
+
+        sorted = controller.sortbyLikes(catalog, size, method)
+        print("El tiempo de procesamiento es de: " + str(round(sorted[1], 2)) + " ms")
+        for e in range (1, size):
+
+            ele = lt.getElement(sorted[0], e)
+
+            print(ele['title'], ele['likes'])
 
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")

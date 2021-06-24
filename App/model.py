@@ -26,8 +26,12 @@
 
 
 import config as cf
+import time as t
 from DISClib.ADT import list as lt
-from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import shellsort as sh
+from DISClib.Algorithms.Sorting import insertionsort as ins
+from DISClib.Algorithms.Sorting import selectionsort as ss
+
 assert cf
 
 """
@@ -74,6 +78,7 @@ def newCategory(name, id):
 
 # Funciones de consulta
 
+
 def getCategoryid(catalog,category_name):
     """
     Devuelve el id de una categoria del catalogo.
@@ -85,6 +90,7 @@ def getCategoryid(catalog,category_name):
         if cat['name']==category_name:
             return cat['id']
     return None
+
 
 def like_ratioCond(video, number):
     """
@@ -111,7 +117,33 @@ def cmpVideosByLikes(video1, video2):
         video1: informacion del primer video que incluye su valor 'likes'
         video2: informacion del segundo video que incluye su valor 'likes'
     """
-    return (int(video1['likes']) < int(video2['likes']))
+    return (int(video1['likes']) > int(video2['likes']))
 
 
 # Funciones de ordenamiento
+
+
+def sortbyLikes(catalog, size, method): 
+    sub_list = lt.subList(catalog['videos'], 1, size)
+
+    sub_list = sub_list.copy()
+
+    if method == "selectionsort":
+        start_time = t.process_time()
+        sorted = ss.sort(sub_list, cmpVideosByLikes)
+        stop_time = t.process_time()
+        delta = stop_time-start_time
+
+    elif method == "insertionsort":
+        start_time = t.process_time()
+        sorted = ins.sort(sub_list, cmpVideosByLikes)
+        stop_time = t.process_time()
+        delta = stop_time-start_time
+
+    elif method == "shellsort":
+        start_time = t.process_time()
+        sorted = sh.sort(sub_list, cmpVideosByLikes)
+        stop_time = t.process_time()
+        delta = stop_time-start_time
+
+    return sorted, delta

@@ -65,4 +65,9 @@ def loadCategory(catalog):
 
 # Funciones de ordenamiento
 
+
+def sortbyLikes(catalog, size, method):
+
+    return model.sortbyLikes(catalog, size, method)
+
 # Funciones de consulta sobre el catálogo
