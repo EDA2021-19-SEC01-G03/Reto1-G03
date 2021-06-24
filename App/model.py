@@ -74,6 +74,12 @@ def newCategory(name, id):
 
 # Funciones de consulta
 
+def getCategoryid(catalog,category_name):
+    for cat in lt.iterator(catalog['category_name']):
+        if cat['name']==category_name:
+            return cat['id']
+    return None
+
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 
