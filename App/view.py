@@ -44,12 +44,16 @@ def printMenu():
     print("5- (Requisito 4) Consultar los Top x videos con mas comentarios en un pais con un tag especifico")
     print("0- Salir")
 
+def printInfoMenu():
+    print("Menu cargar información datos")
+    print("1- Representar la lista como un Array (ARRAY_LIST)")
+    print("2- Representar la lista como una lista sencillamente encadenada (LINKED_LIST)")
 
-def initCatalog():
+def initCatalog(dat_est):
     """
     Inicializa el catologo de libros
     """
-    return controller.initCatalog()
+    return controller.initCatalog(dat_est)
 
 
 def loadData(catalog):
@@ -68,6 +72,14 @@ def firstInfo(first):
     print('Likes: ' + str(first['likes']))
     print('Dislikes: ' + str(first['dislikes']))
 
+def printCategoryList(catalog):
+    """
+    Imprime los nombres de las categorias cargadas
+    """
+    size = lt.size(catalog['category_names'])
+    for i in range(1,size+1):
+        element=lt.getElement(catalog['category_names'],i)
+        print(element['name'])
 
 """
 Menu principal
@@ -76,9 +88,16 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        printInfoMenu()
+        inputs1 = input('Seleccione una opción para continuar\n')
+        if int(inputs1[0])==1:
+            dat_est = "ARRAY_LIST"
+        if int(inputs1[0])==2:
+            dat_est = "LINKED_LIST"
+        
         print("Cargando información de los archivos ....")
 
-        catalog = initCatalog()
+        catalog = initCatalog(dat_est)
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
 
@@ -87,7 +106,7 @@ while True:
         firstInfo(first)
 
         print('Lista de categorias: ')
-        print(catalog['category_names'])
+        printCategoryList(catalog)
 
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")

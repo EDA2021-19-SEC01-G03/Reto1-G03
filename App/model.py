@@ -38,12 +38,12 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog():
+def newCatalog(dat_est):
 
     catalog = {'videos': None, 'category_names': None}
 
-    catalog['videos'] = lt.newList()
-    catalog['category_names'] = lt.newList('ARRAY_LIST')
+    catalog['videos'] = lt.newList(dat_est)
+    catalog['category_names'] = lt.newList(dat_est)
 
     return catalog
 
@@ -74,6 +74,44 @@ def newCategory(name, id):
 
 # Funciones de consulta
 
+def getCategoryid(catalog,category_name):
+    """
+    Devuelve el id de una categoria del catalogo.
+    Args:
+        catalog: catalogo con la lista de videos y la lista de categorias
+        category_name: nombre de la categoria que se consulta
+    """
+    for cat in lt.iterator(catalog['category_name']):
+        if cat['name']==category_name:
+            return cat['id']
+    return None
+
+def like_ratioCond(video, number):
+    """
+    Devuelve verdadero (True) si la taza de likes a dislikes es mayor a la condición representada por el 
+    numero number
+    Args:
+        video: el video sobre el cual se esta evaluando la condición
+        number: un numero float que representa el numero que debe superar la taza para que devuelva
+        verdadero
+    """
+    cond = int(video['likes']/video['dislikes'])
+    if cond > number:
+        return True
+    else:
+        return False
+
 # Funciones utilizadas para comparar elementos dentro de una lista
+
+
+def cmpVideosByLikes(video1, video2):
+    """
+    Devuelve verdadero (True) si los likes de video1 son menores que los del video2
+    Args:
+        video1: informacion del primer video que incluye su valor 'likes'
+        video2: informacion del segundo video que incluye su valor 'likes'
+    """
+    return (int(video1['likes']) < int(video2['likes']))
+
 
 # Funciones de ordenamiento
