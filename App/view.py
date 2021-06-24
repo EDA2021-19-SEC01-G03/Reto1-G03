@@ -68,6 +68,14 @@ def firstInfo(first):
     print('Likes: ' + str(first['likes']))
     print('Dislikes: ' + str(first['dislikes']))
 
+def printCategoryList(catalog):
+    """
+    Imprime los nombres de las categorias cargadas
+    """
+    size = lt.size(catalog['category_names'])
+    for i in range(1,size+1):
+        element=lt.getElement(catalog['category_names'],i)
+        print(element['name'])
 
 """
 Menu principal
@@ -87,7 +95,7 @@ while True:
         firstInfo(first)
 
         print('Lista de categorias: ')
-        print(catalog['category_names'])
+        printCategoryList(catalog)
 
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")
