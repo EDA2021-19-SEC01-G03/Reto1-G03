@@ -34,7 +34,7 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 def initCatalog():
 
-    catalog = model. newCatalog()
+    catalog = model.newCatalog()
     return catalog
 
 # Funciones para la carga de datos
