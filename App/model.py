@@ -76,8 +76,4 @@ def newCategory(name, id):
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
-
-
-
-
 # Funciones de ordenamiento
