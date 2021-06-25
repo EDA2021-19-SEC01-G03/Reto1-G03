@@ -132,18 +132,18 @@ def sortbyLikes(catalog, size, method):
         start_time = t.process_time()
         sorted = ss.sort(sub_list, cmpVideosByLikes)
         stop_time = t.process_time()
-        delta = stop_time-start_time
+        delta = (stop_time-start_time) * 1000
 
     elif method == "insertionsort":
         start_time = t.process_time()
         sorted = ins.sort(sub_list, cmpVideosByLikes)
         stop_time = t.process_time()
-        delta = stop_time-start_time
+        delta = (stop_time-start_time) * 1000
 
     elif method == "shellsort":
         start_time = t.process_time()
         sorted = sh.sort(sub_list, cmpVideosByLikes)
         stop_time = t.process_time()
-        delta = stop_time-start_time
+        delta = (stop_time-start_time) * 1000
 
     return sorted, delta
