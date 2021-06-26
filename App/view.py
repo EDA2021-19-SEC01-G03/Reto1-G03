@@ -52,7 +52,7 @@ def printInfoMenu1():
 
 
 def printInfoMenu2():
-    print("Tipos de algoritmos de ordenamiento ")
+    print("Tipos de algoritmos de ordenamiento: ")
     print("\t 1- Selection")
     print("\t 2- Insertion")
     print("\t 3- Shell")
