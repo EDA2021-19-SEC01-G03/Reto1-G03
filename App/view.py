@@ -33,7 +33,8 @@ Presenta el menu de opciones y por cada seleccion
 se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
-
+default_limit = 1000
+sys.setrecursionlimit(default_limit*10)
 
 def printMenu():
     print("Bienvenido")
@@ -55,6 +56,8 @@ def printInfoMenu2():
     print("\t 1- Selection")
     print("\t 2- Insertion")
     print("\t 3- Shell")
+    print("\t 4- Quick")
+    print("\t 5- Merge")
 
 
 def initCatalog(dat_est):
@@ -124,10 +127,14 @@ while True:
 
         if int(sort[0]) == 1:
             method = "selectionsort"
-        if int(sort[0]) == 2:
+        elif int(sort[0]) == 2:
             method = "insertionsort"
-        if int(sort[0]) == 3:
+        elif int(sort[0]) == 3:
             method = "shellsort"
+        elif int(sort[0]) == 4:
+            method = "quicksort"
+        elif int(sort[0]) == 5:
+            method = "mergesort"
 
         size = lt.size(catalog['videos'])
 

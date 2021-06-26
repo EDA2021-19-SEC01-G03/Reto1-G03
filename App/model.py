@@ -31,6 +31,8 @@ from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sh
 from DISClib.Algorithms.Sorting import insertionsort as ins
 from DISClib.Algorithms.Sorting import selectionsort as ss
+from DISClib.Algorithms.Sorting import quicksort as qs
+from DISClib.Algorithms.Sorting import mergesort as ms
 
 assert cf
 
@@ -143,6 +145,18 @@ def sortbyLikes(catalog, size, method):
     elif method == "shellsort":
         start_time = t.process_time()
         sorted = sh.sort(sub_list, cmpVideosByLikes)
+        stop_time = t.process_time()
+        delta = (stop_time-start_time) * 1000
+
+    elif method == "quicksort":
+        start_time = t.process_time()
+        sorted = qs.sort(sub_list, cmpVideosByLikes)
+        stop_time = t.process_time()
+        delta = (stop_time-start_time) * 1000
+
+    elif method == "mergesort":
+        start_time = t.process_time()
+        sorted = ms.sort(sub_list, cmpVideosByLikes)
         stop_time = t.process_time()
         delta = (stop_time-start_time) * 1000
 
