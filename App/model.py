@@ -79,7 +79,7 @@ def newCategory(name, id):
 # Funciones de consulta
 
 
-def getCategoryid(catalog,category_name):
+def getCategoryid(catalog, category_name):
     """
     Devuelve el id de una categoria del catalogo.
     Args:
@@ -87,18 +87,18 @@ def getCategoryid(catalog,category_name):
         category_name: nombre de la categoria que se consulta
     """
     for cat in lt.iterator(catalog['category_name']):
-        if cat['name']==category_name:
+        if cat['name'] == category_name:
             return cat['id']
     return None
 
 
 def like_ratioCond(video, number):
     """
-    Devuelve verdadero (True) si la taza de likes a dislikes es mayor a la condición representada por el 
+    Devuelve verdadero (True) si la taza de likes a dislikes es mayor a la condición representada por el
     numero number
     Args:
         video: el video sobre el cual se esta evaluando la condición
-        number: un numero float que representa el numero que debe superar la taza para que devuelva
+        number: un numero float que representa el numero que debe superar la tasa para que devuelva
         verdadero
     """
     cond = int(video['likes']/video['dislikes'])
@@ -123,7 +123,7 @@ def cmpVideosByLikes(video1, video2):
 # Funciones de ordenamiento
 
 
-def sortbyLikes(catalog, size, method): 
+def sortbyLikes(catalog, size, method):
     sub_list = lt.subList(catalog['videos'], 1, size)
 
     sub_list = sub_list.copy()

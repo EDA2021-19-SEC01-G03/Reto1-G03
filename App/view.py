@@ -90,6 +90,7 @@ def printCategoryList(catalog):
         element = lt.getElement(catalog['category_names'], i)
         print(element['name'])
 
+
 """
 Menu principal
 """
@@ -135,6 +136,7 @@ while True:
         while menor is False:
 
             q_size = input("Eliga la muestra de la sublista: ")
+
             if int(q_size) <= size:
                 size = int(q_size)
                 menor = True
@@ -146,8 +148,8 @@ while True:
         category = input("Buscando en categoria: ? ")
 
         sorted = controller.sortbyLikes(catalog, size, method)
-        
-        for e in range (1, size):
+
+        for e in range(1, size):
 
             ele = lt.getElement(sorted[0], e)
 
