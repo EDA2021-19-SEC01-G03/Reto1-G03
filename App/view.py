@@ -146,13 +146,13 @@ while True:
         category = input("Buscando en categoria: ? ")
 
         sorted = controller.sortbyLikes(catalog, size, method)
-        print("El tiempo de procesamiento es de: " + str(round(sorted[1], 2)) + " ms")
+        
         for e in range (1, size):
 
             ele = lt.getElement(sorted[0], e)
 
             print(ele['title'], ele['likes'])
-
+        print("El tiempo de procesamiento es de: " + str(round(sorted[1], 2)) + " ms")
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")
 
