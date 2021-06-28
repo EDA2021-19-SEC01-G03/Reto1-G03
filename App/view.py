@@ -80,11 +80,27 @@ def printCategoryList(catalog):
         element = lt.getElement(catalog['category_names'], i)
         print(element['name'])
 
+
 def printReq1(lst):
     for video in lt.iterator(lst):
         print("trending_date: "+ str(video['trending_date'])+ ' title: '+ str(video['title']) + 
               ' channel_title: '+ str(video['channel_title'])+ ' publish_time: '+ str(video['publish_time'])
               + ' views: '+ str(video['views']) + ' likes: ' + str(video['likes'])+ ' dislikes: ' + str(video['dislikes']))
+
+
+def printReq4(lst):
+    for video in lt.iterator(lst):
+        title = "title: " + str(video['title'])
+        channel_title = ' channel_title: ' + str(video['channel_title'])
+        publish_time = ' publish_time: ' + str(video['publish_time'])
+        views = ' views: ' + str(video['views'])
+        likes = ' likes: ' + str(video['likes'])
+        dislikes = ' dislikes: ' + str(video['dislikes'])
+        comment_count = " comment_count: " + str(video['comment_count'])
+        tag = " tags: " + str(video['tags'])
+
+        print(title + channel_title + publish_time + views + likes + dislikes +comment_count + tag)
+
 
 """
 Menu principal
@@ -111,8 +127,8 @@ while True:
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
         category = input("Buscando en categoria: ? ")
-        
-        Req1=controller.getReq1(catalog, category, country, int(number))
+  
+        Req1 = controller.getReq1(catalog, category, country, int(number))
         printReq1(Req1)
         
     elif int(inputs[0]) == 3:
@@ -120,10 +136,15 @@ while True:
 
     elif int(inputs[0]) == 4:
         category = input("Buscando en categoria: ? ")
+
     elif int(inputs[0]) == 5:
-        number = input("Buscando los TOP ?: ")
+        number = int(input("Buscando los TOP ?: "))
         country = input("Buscando del Pais: ? ")
-        tags = input("Buscando el tag: ?")
+        tag = input("Buscando el tag: ?")
+
+        Req4 = controller.getReq4(catalog, country, number, tag)
+
+        printReq4(Req4)
 
     else:
         sys.exit(0)

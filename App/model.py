@@ -109,18 +109,47 @@ def like_ratioCond(video, number):
     else:
         return False
 
+
 def getReq1(catalog, category_name, country, number):
     """
     """
     sub_list = lt.newList("ARRAY_LIST")
-    category_id=getCategoryid(catalog,category_name)
+    category_id = getCategoryid(catalog, category_name)
     for video in lt.iterator(catalog['videos']):
         if video['category_id'] == category_id and video['country'] == country:
-            lt.addLast(sub_list,video)
+            lt.addLast(sub_list, video)
     sorted_list = sortbyLikes(sub_list)
-    top_n = lt.subList(sorted_list,1,number)
-    
+    top_n = lt.subList(sorted_list, 1, number)
+
     return top_n
+
+
+def getReq4(catalog, country, number, tag):
+
+    result = lt.newList("ARRAY_LIST")
+
+    for video in lt.iterator(catalog['videos']):
+
+        if (tag in video['tags']) and (country == video['country']):
+            lt.addLast(result, video)
+
+    sorted = sortbyComm(result)
+
+    first_n = lt.subList(sorted, 1, number)
+
+    return first_n
+
+ 
+
+
+
+
+
+
+
+
+
+  
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 
@@ -134,7 +163,19 @@ def cmpVideosByLikes(video1, video2):
     return (int(video1['likes']) > int(video2['likes']))
 
 
+def cmpVideosByComm(video1, video2):
+
+    return (int(video1['comment_count']) > int(video2['comment_count']))
+
+
 # Funciones de ordenamiento
+
+
+def sortbyComm(lst):
+
+    sub_list = lst.copy()
+    sorted = ms.sort(sub_list, cmpVideosByComm)
+    return sorted
 
 
 def sortbyLikes(lst):
