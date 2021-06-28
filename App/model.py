@@ -44,12 +44,12 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog(dat_est):
+def newCatalog():
 
     catalog = {'videos': None, 'category_names': None}
 
-    catalog['videos'] = lt.newList(dat_est)
-    catalog['category_names'] = lt.newList(dat_est)
+    catalog['videos'] = lt.newList('ARRAY_LIST')
+    catalog['category_names'] = lt.newList('ARRAY_LIST')
 
     return catalog
 
@@ -88,10 +88,10 @@ def getCategoryid(catalog, category_name):
         catalog: catalogo con la lista de videos y la lista de categorias
         category_name: nombre de la categoria que se consulta
     """
-    for cat in lt.iterator(catalog['category_name']):
-        if cat['name'] == category_name:
+    for cat in lt.iterator(catalog['category_names']):
+        if category_name in cat['name']:
             return cat['id']
-    return None
+    return "error"
 
 
 def like_ratioCond(video, number):
@@ -109,6 +109,18 @@ def like_ratioCond(video, number):
     else:
         return False
 
+def getReq1(catalog, category_name, country, number):
+    """
+    """
+    sub_list = lt.newList("ARRAY_LIST")
+    category_id=getCategoryid(catalog,category_name)
+    for video in lt.iterator(catalog['videos']):
+        if video['category_id'] == category_id and video['country'] == country:
+            lt.addLast(sub_list,video)
+    sorted_list = sortbyLikes(sub_list)
+    top_n = lt.subList(sorted_list,1,number)
+    
+    return top_n
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 
@@ -125,39 +137,8 @@ def cmpVideosByLikes(video1, video2):
 # Funciones de ordenamiento
 
 
-def sortbyLikes(catalog, size, method):
-    sub_list = lt.subList(catalog['videos'], 1, size)
-
-    sub_list = sub_list.copy()
-
-    if method == "selectionsort":
-        start_time = t.process_time()
-        sorted = ss.sort(sub_list, cmpVideosByLikes)
-        stop_time = t.process_time()
-        delta = (stop_time-start_time) * 1000
-
-    elif method == "insertionsort":
-        start_time = t.process_time()
-        sorted = ins.sort(sub_list, cmpVideosByLikes)
-        stop_time = t.process_time()
-        delta = (stop_time-start_time) * 1000
-
-    elif method == "shellsort":
-        start_time = t.process_time()
-        sorted = sh.sort(sub_list, cmpVideosByLikes)
-        stop_time = t.process_time()
-        delta = (stop_time-start_time) * 1000
-
-    elif method == "quicksort":
-        start_time = t.process_time()
-        sorted = qs.sort(sub_list, cmpVideosByLikes)
-        stop_time = t.process_time()
-        delta = (stop_time-start_time) * 1000
-
-    elif method == "mergesort":
-        start_time = t.process_time()
-        sorted = ms.sort(sub_list, cmpVideosByLikes)
-        stop_time = t.process_time()
-        delta = (stop_time-start_time) * 1000
-
-    return sorted, delta
+def sortbyLikes(lst):
+    sub_list = lst.copy()
+    sorted = ms.sort(sub_list, cmpVideosByLikes)
+    
+    return sorted

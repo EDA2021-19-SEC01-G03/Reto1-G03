@@ -32,9 +32,9 @@ El controlador se encarga de mediar entre la vista y el modelo.
 # Inicialización del Catálogo de libros
 
 
-def initCatalog(dat_est):
+def initCatalog():
 
-    catalog = model.newCatalog(dat_est)
+    catalog = model.newCatalog()
     return catalog
 
 # Funciones para la carga de datos
@@ -71,3 +71,7 @@ def sortbyLikes(catalog, size, method):
     return model.sortbyLikes(catalog, size, method)
 
 # Funciones de consulta sobre el catálogo
+
+def getReq1(catalog, category_name, country, number):
+    
+    return model.getReq1(catalog, category_name, country, number)

@@ -47,25 +47,11 @@ def printMenu():
     print("0- Salir")
 
 
-def printInfoMenu1():
-    print("\t 1- Array (ARRAY_LIST)")
-    print("\t 2- Lista encadenada(LINKED_LIST)")
-
-
-def printInfoMenu2():
-    print("Tipos de algoritmos de ordenamiento: ")
-    print("\t 1- Selection")
-    print("\t 2- Insertion")
-    print("\t 3- Shell")
-    print("\t 4- Quick")
-    print("\t 5- Merge")
-
-
-def initCatalog(dat_est):
+def initCatalog():
     """
     Inicializa el catologo de libros
     """
-    return controller.initCatalog(dat_est)
+    return controller.initCatalog()
 
 
 def loadData(catalog):
@@ -94,6 +80,11 @@ def printCategoryList(catalog):
         element = lt.getElement(catalog['category_names'], i)
         print(element['name'])
 
+def printReq1(lst):
+    for video in lt.iterator(lst):
+        print("trending_date: "+ str(video['trending_date'])+ ' title: '+ str(video['title']) + 
+              ' channel_title: '+ str(video['channel_title'])+ ' publish_time: '+ str(video['publish_time'])
+              + ' views: '+ str(video['views']) + ' likes: ' + str(video['likes'])+ ' dislikes: ' + str(video['dislikes']))
 
 """
 Menu principal
@@ -102,19 +93,12 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        printInfoMenu1()
-        inputs1 = input('Seleccione el tipo de estructura de datos que quiere implementar\n')
-        if int(inputs[0]) == 1:
-            dat_est = "ARRAY_LIST"
-        if int(inputs1[0]) == 2:
-            dat_est = "LINKED_LIST"
 
         print("Cargando información de los archivos ....")
 
-        catalog = initCatalog(dat_est)
+        catalog = initCatalog()
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
-
         first = lt.firstElement(catalog['videos'])
         print('Primer video cargado: ')
         firstInfo(first)
@@ -123,52 +107,19 @@ while True:
         printCategoryList(catalog)
 
     elif int(inputs[0]) == 2:
-        printInfoMenu2()
-        sort = input("Seleccione un método de ordenamiento para el algoritmo: ")
-
-        if int(sort[0]) == 1:
-            method = "selectionsort"
-        elif int(sort[0]) == 2:
-            method = "insertionsort"
-        elif int(sort[0]) == 3:
-            method = "shellsort"
-        elif int(sort[0]) == 4:
-            method = "quicksort"
-        elif int(sort[0]) == 5:
-            method = "mergesort"
-
-        size = lt.size(catalog['videos'])
-
-        menor = False
-
-        while menor is False:
-
-            q_size = input("Eliga la muestra de la sublista: ")
-
-            if int(q_size) <= size:
-                size = int(q_size)
-                menor = True
-            else:
-                print("Eliga un valor que no exceda el tamaño de la lista")
 
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
         category = input("Buscando en categoria: ? ")
-
-        sorted = controller.sortbyLikes(catalog, size, method)
-
-        for e in range(1, size):
-
-            ele = lt.getElement(sorted[0], e)
-
-            print(ele['title'], ele['likes'])
-        print("El tiempo de procesamiento es de: " + str(round(sorted[1], 2)) + " ms")
+        
+        Req1=controller.getReq1(catalog, category, country, int(number))
+        printReq1(Req1)
+        
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")
 
     elif int(inputs[0]) == 4:
         category = input("Buscando en categoria: ? ")
-
     elif int(inputs[0]) == 5:
         number = input("Buscando los TOP ?: ")
         country = input("Buscando del Pais: ? ")
