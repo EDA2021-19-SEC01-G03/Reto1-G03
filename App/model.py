@@ -163,21 +163,21 @@ def getReq3(catalog, category_name):
         if cat_id == video['category_id'] and ratio:
             lt.addLast(result, video)
 
-    result_sorted = result
+
 
     x = 1
     list_days = lt.newList("ARRAY_LIST")
 
-    while x < lt.size(result_sorted):
+    while x < lt.size(result):
 
-        vid_x = lt.getElement(result_sorted, x)
+        vid_x = lt.getElement(result, x)
         name_x = vid_x['title']
         contador = 0
         j = x
         dates = []
 
-        while j < lt.size(result_sorted):
-            vid_j = lt.getElement(result_sorted, j)
+        while j < lt.size(result):
+            vid_j = lt.getElement(result, j)
 
             if vid_j['title'] == name_x and (vid_j['trending_date'] not in dates):
                 contador += 1
