@@ -99,7 +99,7 @@ def printReq3(lst):
 
     print(title + channel_title + category + ratio + days)
 
-    
+
 def printReq2(video, max):
     title = "title: " + str(video['title'])
     channel_title = " channel_title: " + str(video['channel_title'])

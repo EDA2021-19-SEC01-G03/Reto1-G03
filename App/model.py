@@ -146,7 +146,7 @@ def getReq2(catalog, country):
         if cont > max:
             max = cont
             result = video_i
-        prog +=1
+        prog += 1
         porcentaje = round((prog/total)*100,2)
         print(str(porcentaje)+'%')
     return result, max
@@ -163,7 +163,7 @@ def getReq3(catalog, category_name):
         if cat_id == video['category_id'] and ratio:
             lt.addLast(result, video)
 
-    result_sorted = sortbyTrendingDate(result)
+    result_sorted = result
 
     x = 1
     list_days = lt.newList("ARRAY_LIST")
@@ -191,9 +191,8 @@ def getReq3(catalog, category_name):
 
         x += 1
 
-    resultado = sortbyDays(list_days)
-
-    return resultado
+    result = sortbyDays(list_days)
+    return result
 
 
 def getReq4(catalog, country, number, tag):
@@ -285,6 +284,7 @@ def sortbyName(lst):
 def sortbyDays(lst): 
     sub_list = lst.copy()
     sorted = ms.sort(sub_list, cmpVideosbyDays)
+    return sorted 
 
 def sortbyTrendingDate(lst):
     sub_list = lst.copy()
