@@ -88,6 +88,18 @@ def printReq1(lst):
               + ' views: '+ str(video['views']) + ' likes: ' + str(video['likes'])+ ' dislikes: ' + str(video['dislikes']))
 
 
+def printReq3(lst): 
+
+    video = lt.firstElement(lst)
+    title = "title: " + str(video['title'])
+    channel_title = ' channel_title: ' + str(video['channel_title'])
+    category = ' category_id: ' + str(video['category_id'])
+    ratio = ' Ratio_likes_dislikes: ' + str(int(video['likes'])/int(video['dislikes']))
+    days = ' days: ' + str(video['days'])
+
+    print(title + channel_title + category + ratio + days)
+
+
 def printReq4(lst):
     for video in lt.iterator(lst):
         title = "title: " + str(video['title'])
@@ -99,7 +111,7 @@ def printReq4(lst):
         comment_count = " comment_count: " + str(video['comment_count'])
         tag = " tags: " + str(video['tags'])
 
-        print(title + channel_title + publish_time + views + likes + dislikes +comment_count + tag)
+        print(title + channel_title + publish_time + views + likes + dislikes + comment_count + tag)
 
 
 """
@@ -136,6 +148,10 @@ while True:
 
     elif int(inputs[0]) == 4:
         category = input("Buscando en categoria: ? ")
+
+        Req3 = controller.getReq3(catalog, category)
+
+        printReq3(Req3)
 
     elif int(inputs[0]) == 5:
         number = int(input("Buscando los TOP ?: "))

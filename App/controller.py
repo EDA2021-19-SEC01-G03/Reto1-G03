@@ -72,11 +72,18 @@ def sortbyLikes(catalog, size, method):
 
 # Funciones de consulta sobre el catálogo
 
+
 def getReq1(catalog, category_name, country, number):
     
     return model.getReq1(catalog, category_name, country, number)
 
 
+def getReq3(catalog, category_name): 
+
+    return model.getReq3(catalog, category_name)
+
+ 
 def getReq4(catalog, country, number, tag): 
 
     return model.getReq4(catalog, country, number, tag )
+
