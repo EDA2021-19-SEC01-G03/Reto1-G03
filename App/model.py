@@ -163,7 +163,7 @@ def getReq3(catalog, category_name):
         if cat_id == video['category_id'] and ratio:
             lt.addLast(result, video)
 
-    result_sorted = result
+    result_sorted = sortbyTrendingDate(result)
 
     x = 1
     list_days = lt.newList("ARRAY_LIST")
