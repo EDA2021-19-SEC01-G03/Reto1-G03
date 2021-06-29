@@ -171,6 +171,25 @@ def cmpVideosByComm(video1, video2):
     return (int(video1['comment_count']) > int(video2['comment_count']))
 
 
+def cmpVideosByTrendingDate(video1,video2):
+    date1 = video1['trending_date'].split('.')
+    date2 = video2['trending_date'].split('.')
+    if int(date1[0]) > int(date2[0]):
+        return True
+    if int(date1[0]) < int(date2[0]):
+        return False
+    else:
+        if int(date1[2]) > int(date2[2]):
+            return True
+        if int(date1[2]) < int(date2[2]):
+            return False
+        else:
+            if int(date1[1]) > int(date2[1]):
+                return True
+            if int(date1[1]) < int(date2[1]):
+                return False
+            else:
+                return True
 # Funciones de ordenamiento
 
 
