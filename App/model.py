@@ -103,16 +103,14 @@ def like_ratioCond(video, number):
         number: un numero float que representa el numero que debe superar la tasa para que devuelva
         verdadero
     """
-    
     if int(video['dislikes']) != 0:
         cond = int(video['likes'])/int(video['dislikes'])
         if cond > number:
             return True
         else:
             return False
-    elif int(video['dislikes']) == 0: 
+    else:
         return True
-
 
 
 def getReq1(catalog, category_name, country, number):
@@ -129,6 +127,29 @@ def getReq1(catalog, category_name, country, number):
 
     return top_n
 
+def getReq2(catalog, country):
+    
+    sub_list = lt.newList("ARRAY_LIST")
+    for video in lt.iterator(catalog['videos']):
+        if video['country'] == country and like_ratioCond(video, 10):
+            lt.addLast(sub_list, video)
+    sorted_list = sortbyTrendingDate(sub_list)
+    total = lt.size(sorted_list)
+    result = lt.firstElement(sorted_list)
+    prog = 0
+    max = 0
+    for video_i in lt.iterator(sorted_list):
+        cont = 0
+        for video_j in lt.iterator(sorted_list):
+            if video_j['video_id'] == video_i['video_id']:
+                cont += 1
+        if cont > max:
+            max = cont
+            result = video_i
+        prog +=1
+        porcentaje = round((prog/total)*100,2)
+        print(str(porcentaje)+'%')
+    return result, max
 
 def getReq3(catalog, category_name):
 
@@ -220,6 +241,25 @@ def cmpVideosbyDays(video1, video2):
     return (video1['days'] > video2['days'])
 
 
+def cmpVideosByTrendingDate(video1,video2):
+    date1 = video1['trending_date'].split('.')
+    date2 = video2['trending_date'].split('.')
+    if int(date1[0]) > int(date2[0]):
+        return True
+    if int(date1[0]) < int(date2[0]):
+        return False
+    else:
+        if int(date1[2]) > int(date2[2]):
+            return True
+        if int(date1[2]) < int(date2[2]):
+            return False
+        else:
+            if int(date1[1]) > int(date2[1]):
+                return True
+            if int(date1[1]) < int(date2[1]):
+                return False
+            else:
+                return True
 # Funciones de ordenamiento
 
 
@@ -242,9 +282,12 @@ def sortbyName(lst):
     
     return sorted
 
-
 def sortbyDays(lst): 
     sub_list = lst.copy()
     sorted = ms.sort(sub_list, cmpVideosbyDays)
 
+def sortbyTrendingDate(lst):
+    sub_list = lst.copy()
+    sorted = ms.sort(sub_list, cmpVideosByTrendingDate)
+    
     return sorted
