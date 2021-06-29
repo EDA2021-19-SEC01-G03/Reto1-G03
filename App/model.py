@@ -205,3 +205,10 @@ def sortbyLikes(lst):
     sorted = ms.sort(sub_list, cmpVideosByLikes)
     
     return sorted
+
+
+def sortbyTrendingDate(lst):
+    sub_list = lst.copy()
+    sorted = ms.sort(sub_list, cmpVideosByTrendingDate)
+    
+    return sorted
