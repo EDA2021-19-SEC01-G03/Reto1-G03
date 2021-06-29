@@ -88,6 +88,17 @@ def printReq1(lst):
               + ' views: '+ str(video['views']) + ' likes: ' + str(video['likes'])+ ' dislikes: ' + str(video['dislikes']))
 
 
+def printReq2(video, max):
+    title = "title: " + str(video['title'])
+    channel_title = " channel_title: " + str(video['channel_title'])
+    country = " country: " + str(video['country'])
+    ratio = int(video['likes'])/int(video['dislikes'])
+    ratio_likes_dislikes = " ratio_likes_dislikes: " + str(ratio)
+    dias = " Días: " + str(max)
+    
+    print(title + channel_title + country + ratio_likes_dislikes + dias)
+
+
 def printReq4(lst):
     for video in lt.iterator(lst):
         title = "title: " + str(video['title'])
@@ -133,7 +144,10 @@ while True:
         
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")
-
+        
+        Req2 = controller.getReq2(catalog, country)
+        printReq2(Req2[0], Req2[1])
+        
     elif int(inputs[0]) == 4:
         category = input("Buscando en categoria: ? ")
 

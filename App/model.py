@@ -103,14 +103,14 @@ def like_ratioCond(video, number):
         number: un numero float que representa el numero que debe superar la tasa para que devuelva
         verdadero
     """
-    if int(video['dislikes']) == 0:
-        return True
-    else:
+    if int(video['dislikes']) != 0:
         cond = int(video['likes'])/int(video['dislikes'])
         if cond > number:
             return True
         else:
             return False
+    else:
+        return True
 
 
 def getReq1(catalog, category_name, country, number):
@@ -126,6 +126,29 @@ def getReq1(catalog, category_name, country, number):
 
     return top_n
 
+def getReq2(catalog, country):
+    
+    sub_list = lt.newList("ARRAY_LIST")
+    for video in lt.iterator(catalog['videos']):
+        if video['country'] == country and like_ratioCond(video, 10):
+            lt.addLast(sub_list, video)
+    sorted_list = sortbyTrendingDate(sub_list)
+    total = lt.size(sorted_list)
+    result = lt.firstElement(sorted_list)
+    prog = 0
+    max = 0
+    for video_i in lt.iterator(sorted_list):
+        cont = 0
+        for video_j in lt.iterator(sorted_list):
+            if video_j['video_id'] == video_i['video_id']:
+                cont += 1
+        if cont > max:
+            max = cont
+            result = video_i
+        prog +=1
+        porcentaje = round((prog/total)*100,2)
+        print(str(porcentaje)+'%')
+    return result, max
 
 def getReq4(catalog, country, number, tag):
 

@@ -76,6 +76,10 @@ def getReq1(catalog, category_name, country, number):
     
     return model.getReq1(catalog, category_name, country, number)
 
+def getReq2(catalog, country):
+    
+    return model.getReq2(catalog, country)
+
 
 def getReq4(catalog, country, number, tag): 
 
