@@ -103,17 +103,14 @@ def like_ratioCond(video, number):
         number: un numero float que representa el numero que debe superar la tasa para que devuelva
         verdadero
     """
-    if int(video['likes'])<int(video['dislikes']):
-        return False
+    if int(video['dislikes']) == 0:
+        return True
     else:
-        if int(video['dislikes']) == 0:
+        cond = int(video['likes'])/int(video['dislikes'])
+        if cond > number:
             return True
         else:
-            cond = int(video['likes'])/int(video['dislikes'])
-            if int > number:
-                return True
-            else:
-                return False
+            return False
 
 
 def getReq1(catalog, category_name, country, number):
