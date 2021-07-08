@@ -161,7 +161,6 @@ def getReq2(catalog, country):
 def getReq3(catalog, category_name):
 
     result = lt.newList("ARRAYLIST")
-    start_time = t.process_time()
     cat_id = getCategoryid(catalog, category_name)
     
     for video in lt.iterator(catalog['videos']):
