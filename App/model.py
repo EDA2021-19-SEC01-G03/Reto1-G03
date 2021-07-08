@@ -155,7 +155,7 @@ def getReq3(catalog, category_name):
 
     result = lt.newList("ARRAYLIST")
     cat_id = getCategoryid(catalog, category_name)
-
+    
     for video in lt.iterator(catalog['videos']):
 
         ratio = like_ratioCond(video, 20)
@@ -163,36 +163,35 @@ def getReq3(catalog, category_name):
         if cat_id == video['category_id'] and ratio:
             lt.addLast(result, video)
 
+    sort_list_name = sortbyName(result)
 
+        # N log N
+        
+    compare = lt.firstElement(sort_list_name)['title']
+    name_max = lt.firstElement(sort_list_name)['title']
 
-    x = 1
-    list_days = lt.newList("ARRAY_LIST")
+    days = 0
+    max = 0
+    pos = 1
+    
+    for video in lt.iterator(sort_list_name):  #N
 
-    while x < lt.size(result):
+        if (video['title'] == compare):
+            days += 1
 
-        vid_x = lt.getElement(result, x)
-        name_x = vid_x['title']
-        contador = 0
-        j = x
-        dates = []
+        else:
 
-        while j < lt.size(result):
-            vid_j = lt.getElement(result, j)
+            if days > max:
+                max = days
+                name_max = lt.getElement(sort_list_name, (pos-1))
 
-            if vid_j['title'] == name_x and (vid_j['trending_date'] not in dates):
-                contador += 1
-                dates.append(vid_j['trending_date'])
+            compare = video['title']
+            days = 1
+        
+        pos += 1
 
-            j += 1
-
-        vid_x['days'] = contador
-
-        lt.addLast(list_days, vid_x)
-
-        x += 1
-
-    result = sortbyDays(list_days)
-    return result
+    return name_max, max
+    
 
 
 def getReq4(catalog, country, number, tag):

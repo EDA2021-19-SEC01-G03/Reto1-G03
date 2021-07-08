@@ -88,14 +88,16 @@ def printReq1(lst):
               + ' views: '+ str(video['views']) + ' likes: ' + str(video['likes'])+ ' dislikes: ' + str(video['dislikes']))
 
 
-def printReq3(lst): 
+def printReq3(tuple): 
 
-    video = lt.firstElement(lst)
+    video = tuple[0]
+    days = tuple[1]
+
     title = "title: " + str(video['title'])
     channel_title = ' channel_title: ' + str(video['channel_title'])
     category = ' category_id: ' + str(video['category_id'])
     ratio = ' Ratio_likes_dislikes: ' + str(int(video['likes'])/int(video['dislikes']))
-    days = ' days: ' + str(video['days'])
+    days = ' days: ' + str(days)
 
     print(title + channel_title + category + ratio + days)
 
@@ -164,7 +166,6 @@ while True:
         category = input("Buscando en categoria: ? ")
 
         Req3 = controller.getReq3(catalog, category)
-
         printReq3(Req3)
 
     elif int(inputs[0]) == 5:
