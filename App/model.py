@@ -117,6 +117,7 @@ def getReq1(catalog, category_name, country, number):
     """
     """
     sub_list = lt.newList("ARRAY_LIST")
+    start_time = t.process_time()
     category_id = getCategoryid(catalog, category_name)
     for video in lt.iterator(catalog['videos']):
         
@@ -124,12 +125,15 @@ def getReq1(catalog, category_name, country, number):
             lt.addLast(sub_list, video)
     sorted_list = sortbyLikes(sub_list)
     top_n = lt.subList(sorted_list, 1, number)
+    stop_time = t.process_time()
+    delta_time = (stop_time - start_time)*1000
 
-    return top_n
+    return top_n, delta_time
 
 def getReq2(catalog, country):
     
     sub_list = lt.newList("ARRAY_LIST")
+    start_time = t.process_time()
     for video in lt.iterator(catalog['videos']):
         if video['country'] == country and like_ratioCond(video, 10):
             lt.addLast(sub_list, video)
@@ -149,11 +153,15 @@ def getReq2(catalog, country):
         prog += 1
         porcentaje = round((prog/total)*100,2)
         print(str(porcentaje)+'%')
-    return result, max
+    stop_time = t.process_time()
+    delta_time = (stop_time - start_time)*1000
+    
+    return result, max, delta_time
 
 def getReq3(catalog, category_name):
 
     result = lt.newList("ARRAYLIST")
+    start_time = t.process_time()
     cat_id = getCategoryid(catalog, category_name)
     
     for video in lt.iterator(catalog['videos']):
@@ -197,6 +205,7 @@ def getReq3(catalog, category_name):
 def getReq4(catalog, country, number, tag):
 
     result = lt.newList("ARRAY_LIST")
+    start_time = t.process_time()
 
     for video in lt.iterator(catalog['videos']):
 
@@ -207,8 +216,10 @@ def getReq4(catalog, country, number, tag):
     sorted = sortbyComm(result)
 
     first_n = lt.subList(sorted, 1, number)
+    stop_time = t.process_time()
+    delta_time = (stop_time - start_time)*1000
 
-    return first_n
+    return first_n, delta_time
 
 
 # Funciones utilizadas para comparar elementos dentro de una lista

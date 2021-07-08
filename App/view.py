@@ -154,13 +154,15 @@ while True:
         category = input("Buscando en categoria: ? ")
   
         Req1 = controller.getReq1(catalog, category, country, int(number))
-        printReq1(Req1)
+        printReq1(Req1[0])
+        print(Req1[1])
         
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")
         
         Req2 = controller.getReq2(catalog, country)
         printReq2(Req2[0], Req2[1])
+        print(Req2[2])
         
     elif int(inputs[0]) == 4:
         category = input("Buscando en categoria: ? ")
@@ -175,7 +177,8 @@ while True:
 
         Req4 = controller.getReq4(catalog, country, number, tag)
 
-        printReq4(Req4)
+        printReq4(Req4[0])
+        print(Req4[1])
 
     else:
         sys.exit(0)
