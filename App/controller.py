@@ -198,4 +198,9 @@ def deltaMemory(start_memory, stop_memory):
     memory_diff = stop_memory.compare_to(start_memory, "filename")
     delta_memory = 0.0
 
-    return memory_diff
+    # suma de las diferencias en uso de memoria
+    for stat in memory_diff:
+        delta_memory = delta_memory + stat.size_diff
+    # de Byte -> kByte
+    delta_memory = delta_memory/1024.0
+    return delta_memory
