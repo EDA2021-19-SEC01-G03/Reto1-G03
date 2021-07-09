@@ -58,7 +58,7 @@ def loadData(catalog):
     """
     Carga los libros en la estructura de datos
     """
-    controller.loadData(catalog)
+    return controller.loadData(catalog)
 
 
 def firstInfo(first):
@@ -137,7 +137,7 @@ while True:
         print("Cargando información de los archivos ....")
 
         catalog = initCatalog()
-        loadData(catalog)
+        prueba = loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
         first = lt.firstElement(catalog['videos'])
         print('Primer video cargado: ')
@@ -145,6 +145,8 @@ while True:
 
         print('Lista de categorias: ')
         printCategoryList(catalog)
+        
+        print("Tiempo [ms]: ", f"{prueba[0]:.3f}", "    ||  ", "Memoria [kB]: ", f"{prueba[1]:.3f}")
 
     elif int(inputs[0]) == 2:
 
@@ -154,21 +156,25 @@ while True:
   
         Req1 = controller.getReq1(catalog, category, country, int(number))
         printReq1(Req1[0])
-        print(Req1[1])
+        print("Tiempo [ms]: ", f"{Req1[1]:.3f}", "    ||  ", "Memoria [kB]: ", f"{Req1[2]:.3f}")
         
     elif int(inputs[0]) == 3:
         country = input("Buscando del Pais: ? ")
         
         Req2 = controller.getReq2(catalog, country)
-        printReq2(Req2[0], Req2[1])
-        print(Req2[2])
+        printReq2(Req2[0][0], Req2[0][1])
+        print("Tiempo [ms]: ", f"{Req2[1]:.3f}", "    ||  ", "Memoria [kB]: ", f"{Req2[2]:.3f}")
         
     elif int(inputs[0]) == 4:
         category = input("Buscando en categoria: ? ")
 
         Req3 = controller.getReq3(catalog, category)
         printReq3(Req3[0])
+<<<<<<< HEAD
     
+=======
+        print("Tiempo [ms]: ", f"{Req3[1]:.3f}", "    ||  ", "Memoria [kB]: ", f"{Req3[2]:.3f}")
+>>>>>>> 8ecafc624c6c1af45a98f91b1ac627dc1b4d797e
 
     elif int(inputs[0]) == 5:
         number = int(input("Buscando los TOP ?: "))
@@ -178,6 +184,10 @@ while True:
         Req4 = controller.getReq4(catalog, country, number, tag)
 
         printReq4(Req4[0])
+<<<<<<< HEAD
+=======
+        print("Tiempo [ms]: ", f"{Req4[1]:.3f}", "    ||  ", "Memoria [kB]: ", f"{Req4[2]:.3f}")
+>>>>>>> 8ecafc624c6c1af45a98f91b1ac627dc1b4d797e
 
     else:
         sys.exit(0)

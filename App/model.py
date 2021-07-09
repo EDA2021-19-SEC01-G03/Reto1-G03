@@ -135,25 +135,23 @@ def getReq2(catalog, country):
     for video in lt.iterator(catalog['videos']):
         if video['country'] == country and like_ratioCond(video, 10):
             lt.addLast(sub_list, video)
-    sorted_list = sortbyTrendingDate(sub_list)
-    total = lt.size(sorted_list)
-    result = lt.firstElement(sorted_list)
-    prog = 0
-    max = 0
-    for video_i in lt.iterator(sorted_list):
-        cont = 0
-        for video_j in lt.iterator(sorted_list):
-            if video_j['video_id'] == video_i['video_id']:
-                cont += 1
-        if cont > max:
-            max = cont
-            result = video_i
-        prog += 1
-        porcentaje = round((prog/total)*100,2)
-        print(str(porcentaje)+'%')
-
+    sorted_list = sortbyid(sub_list)
+    top_video = lt.firstElement(sorted_list)
+    compare = top_video['video_id']
+    max_days = 0
+    days = 0
     
-    return result, max,
+    for video in lt.iterator(sorted_list):
+        if video['video_id'] != compare:
+            days = 1
+            compare = video['video_id']
+        else:
+            days +=1
+        if days > max_days:
+            top_video = video
+            max_days = days
+    
+    return top_video, max_days
 
 
 def getReq3(catalog, category_name):
@@ -169,7 +167,7 @@ def getReq3(catalog, category_name):
 
     sort_list_name = sortbyName(result)
 
-        # N log N
+    # N log N
         
     compare = lt.firstElement(sort_list_name)['title']
     name_max = lt.firstElement(sort_list_name)
@@ -263,6 +261,12 @@ def cmpVideosByTrendingDate(video1,video2):
                 return False
             else:
                 return True
+
+
+def cmpVideosByid(video1, video2):
+    return (video1['video_id']> video2['video_id'])
+
+
 # Funciones de ordenamiento
 
 
@@ -296,4 +300,11 @@ def sortbyName(lst):
     sub_list = lst.copy()
     sorted = ms.sort(sub_list, cmpVideosbyName)
 
+    return sorted
+
+
+def sortbyid(lst):
+    sub_list = lst.copy()
+    sorted = ms.sort(sub_list, cmpVideosByid)
+    
     return sorted
