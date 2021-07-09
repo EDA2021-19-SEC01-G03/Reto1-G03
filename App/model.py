@@ -155,21 +155,19 @@ def getReq2(catalog, country):
     
     return result, max,
 
+
 def getReq3(catalog, category_name):
 
-    result = lt.newList("ARRAYLIST")
+    result = lt.newList("ARRAY_LIST")
     cat_id = getCategoryid(catalog, category_name)
-    u= 1
     for video in lt.iterator(catalog['videos']):
 
         ratio = like_ratioCond(video, 20)
 
         if cat_id == video['category_id'] and ratio:
             lt.addLast(result, video)
-        print(u / lt.size(catalog['videos']))
-        u +=1
+
     sort_list_name = sortbyName(result)
-    print("Done")
 
         # N log N
         
@@ -193,7 +191,7 @@ def getReq3(catalog, category_name):
 
             compare = video['title']
             days = 1
-        print(pos/lt.size(sort_list_name))
+        
         pos += 1
 
     return name_max, max
@@ -279,11 +277,6 @@ def sortbyLikes(lst):
     sorted = ms.sort(sub_list, cmpVideosByLikes)
   
     return sorted
-
-
-def sortbyName(lst):
-    sub_list = lst.copy()
-    sorted = ms.sort(sub_list, cmpVideosbyName)
     
     return sorted
 
@@ -296,4 +289,11 @@ def sortbyTrendingDate(lst):
     sub_list = lst.copy()
     sorted = ms.sort(sub_list, cmpVideosByTrendingDate)
     
+    return sorted
+
+def sortbyName(lst):
+
+    sub_list = lst.copy()
+    sorted = ms.sort(sub_list, cmpVideosbyName)
+
     return sorted

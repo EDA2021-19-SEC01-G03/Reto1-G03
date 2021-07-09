@@ -143,6 +143,7 @@ def getReq3(catalog, category_name):
     tracemalloc.start()
     start_time = getTime()
     start_memory = getMemory()
+    
     Req3 = model.getReq3(catalog, category_name)
 
     stop_memory = getMemory()

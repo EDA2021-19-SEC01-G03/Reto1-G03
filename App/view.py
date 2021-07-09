@@ -89,7 +89,6 @@ def printReq1(lst):
 
 
 def printReq3(tuple): 
-
     video = tuple[0]
     days = tuple[1]
 
@@ -168,7 +167,8 @@ while True:
         category = input("Buscando en categoria: ? ")
 
         Req3 = controller.getReq3(catalog, category)
-        printReq3(Req3)
+        printReq3(Req3[0])
+    
 
     elif int(inputs[0]) == 5:
         number = int(input("Buscando los TOP ?: "))
@@ -178,7 +178,6 @@ while True:
         Req4 = controller.getReq4(catalog, country, number, tag)
 
         printReq4(Req4[0])
-        print(Req4[1])
 
     else:
         sys.exit(0)
