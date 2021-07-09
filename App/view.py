@@ -170,11 +170,7 @@ while True:
 
         Req3 = controller.getReq3(catalog, category)
         printReq3(Req3[0])
-<<<<<<< HEAD
-    
-=======
         print("Tiempo [ms]: ", f"{Req3[1]:.3f}", "    ||  ", "Memoria [kB]: ", f"{Req3[2]:.3f}")
->>>>>>> 8ecafc624c6c1af45a98f91b1ac627dc1b4d797e
 
     elif int(inputs[0]) == 5:
         number = int(input("Buscando los TOP ?: "))
@@ -184,10 +180,7 @@ while True:
         Req4 = controller.getReq4(catalog, country, number, tag)
 
         printReq4(Req4[0])
-<<<<<<< HEAD
-=======
         print("Tiempo [ms]: ", f"{Req4[1]:.3f}", "    ||  ", "Memoria [kB]: ", f"{Req4[2]:.3f}")
->>>>>>> 8ecafc624c6c1af45a98f91b1ac627dc1b4d797e
 
     else:
         sys.exit(0)
